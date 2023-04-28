@@ -1,10 +1,13 @@
 package api.endpoints;
 
 import api.payloads.CreateUserPayload;
+import api.payloads.CreateUserWithArrayPayload;
 import api.payloads.UpdateUserPayload;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;
+
+import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -111,5 +114,27 @@ public class UserOperations {
 		return deleteUserResponse;
 		
 	}
+		
+	//CREATE USER USING ARRAY/LIST OPERATION- POST REQUEST
+	//SEND JSON PAYLOAD AS STRING USING JACKSON API
+	public static Response createUserWithArrayUsingJackson(List<CreateUserPayload> allUsersPayloadJson) throws JsonProcessingException{
+			
+			ObjectMapper mapper=new ObjectMapper();
+			String createUserPayloadString=mapper.writeValueAsString(allUsersPayloadJson);
+			
+			Response postUserResponse=given()
+					.contentType(ContentType.JSON)
+					.accept(ContentType.JSON)
+					.body(createUserPayloadString)
+			
+			.when()
+					.post(Routes.post_url);
+			
+			return postUserResponse;
+			
+		}
+	
+	
+	
 
 }
