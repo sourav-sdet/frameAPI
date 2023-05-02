@@ -1,7 +1,6 @@
 package api.endpoints;
 
 import api.payloads.CreateUserPayload;
-import api.payloads.CreateUserWithArrayPayload;
 import api.payloads.UpdateUserPayload;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
