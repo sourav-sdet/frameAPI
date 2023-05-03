@@ -1,5 +1,7 @@
 package api.utils;
 
+import java.io.IOException;
+
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
@@ -25,9 +27,9 @@ public class BaseAPITest {
 	}
 	
 	@BeforeClass
-	public void userLogin(String username, String password){
+	public void userLogin(){
 		
-		System.out.println("User "+username+" logging in....");
+		
 		
 	}
 	
@@ -38,12 +40,22 @@ public class BaseAPITest {
 	
 	
 	@BeforeTest
-	public void beforeTest(){
+	public void beforeTest() throws IOException{
+		
+		System.out.println("User logging in....");
+		
+		//Code to log user into the system
+		String user=ExcelUtil.readxlsxFile("", "", 1,1);
+		String pwd=ExcelUtil.readxlsxFile("", "", 1,1);
+		
+		
 		
 	}
 	
 	@AfterTest
 	public void afterTest(){
+		System.out.println("User logging out....");
+		//Code to logout user from the system
 		
 	}
 	
