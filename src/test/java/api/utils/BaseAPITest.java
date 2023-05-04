@@ -45,8 +45,8 @@ public class BaseAPITest {
 		System.out.println("User logging in....");
 		
 		//Code to log user into the system
-		String user=ExcelUtil.readxlsxFile("", "", 1,1);
-		String pwd=ExcelUtil.readxlsxFile("", "", 1,1);
+		String user=ExcelUtil.readData("", "", 1,1);
+		String pwd=ExcelUtil.readData("", "", 1,1);
 		
 		
 		
