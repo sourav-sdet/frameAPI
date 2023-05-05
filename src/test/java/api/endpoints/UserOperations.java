@@ -24,7 +24,7 @@ public class UserOperations {
 				.body(createUserPayloadJson)
 		
 		.when()
-				.post(Routes.post_url);
+				.post(Routes.postUser_url);
 		
 		return postUserResponse;
 		
@@ -43,7 +43,7 @@ public class UserOperations {
 				.body(createUserPayloadString)
 		
 		.when()
-				.post(Routes.post_url);
+				.post(Routes.postUser_url);
 		
 		return postUserResponse;
 		
@@ -57,7 +57,7 @@ public class UserOperations {
 				.pathParam("username", userName)
 				
 		.when()
-				.get(Routes.get_url);
+				.get(Routes.getUser_url);
 		
 		return getUserResponse;
 		
@@ -74,7 +74,7 @@ public class UserOperations {
 				.accept(ContentType.JSON)
 				.body(updateUserPayloadJson)
 		.when()
-				.put(Routes.put_url);
+				.put(Routes.putUser_url);
 		
 		return updateUserResponse;
 		
@@ -93,7 +93,7 @@ public class UserOperations {
 				.accept(ContentType.JSON)
 				.body(updateUserPayloadJson)
 		.when()
-				.put(Routes.put_url);
+				.put(Routes.putUser_url);
 		
 		return updateUserResponse;
 		
@@ -108,7 +108,7 @@ public class UserOperations {
 				.pathParam("username", userName)
 				
 		.when()
-				.delete(Routes.delete_url);
+				.delete(Routes.deleteUser_url);
 		
 		return deleteUserResponse;
 		
@@ -127,7 +127,7 @@ public class UserOperations {
 					.body(createUserPayloadString)
 			
 			.when()
-					.post(Routes.post_url);
+					.post(Routes.postUser_url);
 			
 			return postUserResponse;
 			

@@ -36,7 +36,6 @@ public class ExcelUtil {
 		CellType cellType=sheet.getRow(rowNum).getCell(colNum).getCellType();
 		
 		if(cellType.equals(CellType.STRING)){
-		
 			strCellValue=sheet.getRow(rowNum).getCell(colNum).getStringCellValue();
 			fis.close();
 			return strCellValue;
@@ -121,6 +120,23 @@ public class ExcelUtil {
 		
 		
 		}
+
+	
+	public static int getRowCount(String excelFileName, String excelSheetName) {
+
+		
+		
+		
+		return 0;
+	}
+
+
+	public static int getCellCount(String excelSheetName, int i) {
+
+		
+		
+		return 0;
+	}
 		
 		
 		
