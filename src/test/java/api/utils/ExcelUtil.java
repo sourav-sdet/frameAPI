@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -15,10 +16,14 @@ public class ExcelUtil {
 	static File file;
 	static FileInputStream fis;
 	static XSSFSheet sheet;
+	static String strCellValue;
+	static double numericCellValue;
 	
-	public static String readData(String filePath, String sheetName, int rowNum, int colNum) throws IOException{
+	public static Object readData(String fileName, String sheetName, int rowNum, int colNum) throws IOException{
 		
-		file=new File(filePath);
+		
+		
+		file=new File(System.getProperty("user.dir"+"src/test/java/api/resources/"+fileName));
 		fis=new FileInputStream(file);
 		
 		// Create Workbook instance holding reference to .xlsx file
@@ -27,11 +32,29 @@ public class ExcelUtil {
 		// Get first/desired sheet from the workbook
 		sheet= workbook.getSheet(sheetName);
 		
-		String value= sheet.getRow(rowNum).getCell(colNum).getStringCellValue();
+		//Check the format of cell
+		CellType cellType=sheet.getRow(rowNum).getCell(colNum).getCellType();
 		
-		fis.close();
+		if(cellType.equals(CellType.STRING)){
 		
-		return value;
+			strCellValue=sheet.getRow(rowNum).getCell(colNum).getStringCellValue();
+			fis.close();
+			return strCellValue;
+		}
+		
+		else if(cellType.equals(CellType.NUMERIC)){
+			
+			numericCellValue=sheet.getRow(rowNum).getCell(colNum).getNumericCellValue();
+			fis.close();
+			return (int)numericCellValue;
+		}
+		
+		else{
+			fis.close();
+			return null;
+		}
+		
+		
 		
 	}
 	
