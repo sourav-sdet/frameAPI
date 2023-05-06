@@ -12,9 +12,9 @@ public class PropUtil {
 	static File file;
 	static FileInputStream fis;
 		
-	public static String readProperty(String fileName, String key) throws IOException{
+	public static String readProperty(String key) throws IOException{
 		
-		file=new File(System.getProperty("user.dir"+"src/test/java/api/resources/"+fileName));
+		file=new File(System.getProperty("user.dir"+"src/test/java/api/resources/path.properties"));
 		
 		fis=new FileInputStream(file);
 		prop.load(fis);

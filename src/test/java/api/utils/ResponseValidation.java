@@ -15,6 +15,18 @@ public class ResponseValidation {
 	}
 	
 	
+	public static void validateJsonPropertyValue(Response response, String jsonPath, String value){
+		
+		 
+		
+	}
+	
+	
+	public static void validateJsonPropertyValue(Response response, String jsonPath, int value){
+		
+		 
+		
+	}
 	
 	
 
