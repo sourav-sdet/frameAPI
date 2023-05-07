@@ -1,7 +1,5 @@
 package api.endpoints;
 
-import api.payloads.CreateUserPayload;
-import api.payloads.UpdateUserPayload;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;
@@ -11,12 +9,15 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import api.requestPayloads.CreateUserRequestPayload;
+import api.requestPayloads.UpdateUserRequestPayload;
+
 public class UserOperations {
 	
 	
 	//CREATE USER OPERATION- POST REQUEST
 	//SEND JSON PAYLOAD AS REQUEST BODY
-	public static Response createUser(CreateUserPayload createUserPayloadJson){
+	public static Response createUser(CreateUserRequestPayload createUserPayloadJson){
 		
 		Response postUserResponse=given()
 				.contentType(ContentType.JSON)
@@ -32,7 +33,7 @@ public class UserOperations {
 	
 	//CREATE USER OPERATION- POST REQUEST
 	//SEND JSON PAYLOAD AS STRING USING JACKSON API
-	public static Response createUserUsingJackson(CreateUserPayload createUserPayloadJson) throws JsonProcessingException{
+	public static Response createUserUsingJackson(CreateUserRequestPayload createUserPayloadJson) throws JsonProcessingException{
 		
 		ObjectMapper mapper=new ObjectMapper();
 		String createUserPayloadString=mapper.writeValueAsString(createUserPayloadJson);
@@ -66,7 +67,7 @@ public class UserOperations {
 	
 	//UPDATE USER BY USERNAME OPERATION- PUT REQUEST
 	//SEND JSON PAYLOAD AS REQUEST BODY
-	public static Response updateUser(String userName, UpdateUserPayload updateUserPayloadJson ){
+	public static Response updateUser(String userName, UpdateUserRequestPayload updateUserPayloadJson ){
 		
 		Response updateUserResponse=given()
 				.pathParam("username", userName)
@@ -82,7 +83,7 @@ public class UserOperations {
 	
 	//UPDATE USER BY USERNAME OPERATION- PUT REQUEST
 	//SEND JSON PAYLOAD AS STRING USING JACKSON API
-	public static Response updateUserUsingJackson(String userName, UpdateUserPayload updateUserPayloadJson ) throws JsonProcessingException{
+	public static Response updateUserUsingJackson(String userName, UpdateUserRequestPayload updateUserPayloadJson ) throws JsonProcessingException{
 		
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValueAsString(updateUserPayloadJson);
@@ -116,7 +117,7 @@ public class UserOperations {
 		
 	//CREATE USER USING ARRAY/LIST OPERATION- POST REQUEST
 	//SEND JSON PAYLOAD AS STRING USING JACKSON API
-	public static Response createUserWithArrayUsingJackson(List<CreateUserPayload> allUsersPayloadJson) throws JsonProcessingException{
+	public static Response createUserWithArrayUsingJackson(List<CreateUserRequestPayload> allUsersPayloadJson) throws JsonProcessingException{
 			
 			ObjectMapper mapper=new ObjectMapper();
 			String createUserPayloadString=mapper.writeValueAsString(allUsersPayloadJson);

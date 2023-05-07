@@ -1,21 +1,24 @@
 package api.utils;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import api.payloads.CreateUserPayload;
+import api.requestPayloads.CreateUserRequestPayload;
 
 public class DataSetup {
 	
+	static String excelFileName;
+	static String excelSheetName;
 	
-	
-	public static CreateUserPayload createUserDataSetup() throws IOException{
+	public static CreateUserRequestPayload createUserDataSetup() throws IOException{
 		
 		//READ FILENAME FROM PATH.PROPERTIES
-		String excelFileName=PropUtil.readProperty("path.properties", "userPayloadExcelFileName");
-		String excelSheetName=PropUtil.readProperty("path.properties", "createUserPayloadSheetName");
+		excelFileName=PropUtil.readProperty("userPayloadExcelFileName");
+		excelSheetName=PropUtil.readProperty("createUserPayloadSheetName");
 			
 		//SEND JSON PAYLOAD AS REQUEST BODY
-		CreateUserPayload createUserPayload=new CreateUserPayload();
+		CreateUserRequestPayload createUserPayload=new CreateUserRequestPayload();
 			
 		createUserPayload.setUsername((String)ExcelUtil.readData(excelFileName, excelSheetName, 1, 0));
 		createUserPayload.setFirstName((String)ExcelUtil.readData(excelFileName, excelSheetName, 1, 1));
@@ -30,6 +33,21 @@ public class DataSetup {
 		return createUserPayload;
 	
 	
+	}
+	
+	public static List<Object> loginUserDataSetup() throws IOException{
+		
+		//READ FILENAME FROM PATH.PROPERTIES
+		excelFileName=PropUtil.readProperty("loginExcelFileName");
+		excelSheetName=PropUtil.readProperty("loginExcelSheetName");
+		
+		List<Object> loginCreds=new ArrayList<Object>();
+		
+		loginCreds.add(ExcelUtil.readData(excelFileName, excelSheetName, 1, 0));
+		loginCreds.add(ExcelUtil.readData(excelFileName, excelSheetName, 1, 1));
+		
+		return loginCreds;
+		
 	}
 	
 

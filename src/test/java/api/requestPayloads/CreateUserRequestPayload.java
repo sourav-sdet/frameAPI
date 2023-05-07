@@ -1,6 +1,7 @@
-package api.payloads;
+package api.requestPayloads;
 
-public class UpdateUserPayload {
+public class CreateUserRequestPayload {
+	
 	
 	String username;
 	String firstName;
@@ -75,8 +76,5 @@ public class UpdateUserPayload {
 	public void setUserstatus(int userstatus) {
 		this.userstatus = userstatus;
 	}
-	
-	
-	
 
 }
