@@ -9,7 +9,6 @@ public class LoginOperation {
 	public static Response loginUser(String userName, String password){
 		
 		Response loginUserResponse=given()
-				.contentType(ContentType.JSON)
 				.accept(ContentType.JSON)
 				.queryParam("username",userName)
 				.queryParam("password", password)

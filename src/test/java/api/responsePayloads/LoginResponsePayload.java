@@ -1,9 +1,14 @@
 package api.responsePayloads;
 
-public class CreateUserResponsePayload {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+public class LoginResponsePayload {
+	
 	
 	int code;
 	String type;
+	
+	@JsonIgnore
 	String message;
 	
 	public int getCode() {
@@ -24,7 +29,6 @@ public class CreateUserResponsePayload {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
 	
 	
 	

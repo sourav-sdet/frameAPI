@@ -3,17 +3,16 @@
 
 <suite name="apiTestSuite">
 
-  <test name="UserModule">
+	<test name="LoginModule">
     <classes>
-      <class name="api.tests.UserTests"/>
-    </classes>
-  </test> 
-  
-  <test name="StoreModule">
-    <classes>
-      <class name="api.tests.StoreTests"/>
+      <class name="api.tests.LoginUserTest"/>
     </classes>
   </test>
-  
+
+  <test name="UserModule">
+    <classes>
+      <class name="api.tests.CreateUserTest"/>
+    </classes>
+  </test> 
   
 </suite> 

@@ -1,13 +1,11 @@
 package api.tests;
 
 import java.io.IOException;
-
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.github.fge.jsonschema.core.exceptions.ProcessingException;
 
-import api.endpoints.UserOperations;
+import api.endpoints.UserOperation;
 import api.requestPayloads.CreateUserRequestPayload;
 import api.utils.BaseAPITest;
 import api.utils.DataSetup;
@@ -20,12 +18,12 @@ public class CreateUserTest extends BaseAPITest {
 	
 	//TEST CREATE USER OPERATION- POST REQUEST
 	//SEND JSON PAYLOAD AS REQUEST BODY
-	@Test(priority=1, description="Create User")
+	@Test(priority=1, description="Create User", dependsOnMethods="testLoginUser")
 	public void testCreateUser() throws IOException, ProcessingException{
 		
 		//SEND JSON PAYLOAD AS REQUEST BODY
 		CreateUserRequestPayload createUserPayload=DataSetup.createUserDataSetup();
-		Response createUserResponse= UserOperations.createUser(createUserPayload);
+		Response createUserResponse= UserOperation.createUser(createUserPayload);
 		createUserResponse.then().log().all();
 		
 		createUserResponse.then().log().body().statusCode(200);
@@ -41,7 +39,7 @@ public class CreateUserTest extends BaseAPITest {
 		ResponseValidation.validateJsonValue(createUserResponse, "", 1);
 		
 		//VALIDATE RESPONSE JSON USING JACKSON
-		ResponseValidation.validatecreateUserResponse(createUserResponse);
+		ResponseValidation.validateCreateUserResponse(createUserResponse, 200,"unknown","10");
 		
 		
 		
@@ -51,12 +49,12 @@ public class CreateUserTest extends BaseAPITest {
 	
 	//TEST CREATE USER OPERATION- POST REQUEST
 	//SEND JSON PAYLOAD AS STRING USING JACKSON API
-	@Test(priority=2, description="Create User using Jackson API")
+	@Test(priority=2, description="Create User using Jackson API", alwaysRun=false)
 	public void testCreateUserUsingJackson() throws IOException, ProcessingException{
 		
 		//SEND JSON PAYLOAD AS STRING USING JACKSON API
 		CreateUserRequestPayload createUserPayload=DataSetup.createUserDataSetup();
-		Response createUserUsingJacksonResponse= UserOperations.createUserUsingJackson(createUserPayload);
+		Response createUserUsingJacksonResponse= UserOperation.createUserUsingJackson(createUserPayload);
 		createUserUsingJacksonResponse.then().log().all();
 
 		

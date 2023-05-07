@@ -44,15 +44,16 @@ public class ResponseValidation {
 		
 	}
 	
-	public static void validatecreateUserResponse(Response createUserResponse) throws JsonMappingException, JsonProcessingException{
+	public static void validateCreateUserResponse(Response createUserResponse, int expectedCode, String expectedType, String expectedMessage) throws JsonMappingException, JsonProcessingException{
 		
-		String strcreateUserResponse=createUserResponse.asString();
+		String strCreateUserResponse=createUserResponse.asString();
 		mapper=new ObjectMapper();
 		
-		createUserResponsePayload=mapper.readValue(strcreateUserResponse, CreateUserResponsePayload.class);
+		createUserResponsePayload=mapper.readValue(strCreateUserResponse, CreateUserResponsePayload.class);
 		
-		
-		
+		Assert.assertEquals(createUserResponsePayload.getCode(), expectedCode);
+		Assert.assertEquals(createUserResponsePayload.getType(), expectedType);
+		Assert.assertEquals(createUserResponsePayload.getMessage(), expectedMessage);
 		
 		
 	}

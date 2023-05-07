@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import api.requestPayloads.CreateUserRequestPayload;
 import api.requestPayloads.UpdateUserRequestPayload;
 
-public class UserOperations {
+public class UserOperation {
 	
 	
 	//CREATE USER OPERATION- POST REQUEST

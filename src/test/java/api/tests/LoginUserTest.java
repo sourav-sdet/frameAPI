@@ -5,18 +5,15 @@ import java.io.IOException;
 import org.testng.annotations.Test;
 
 import api.endpoints.LoginOperation;
-import api.endpoints.UserOperations;
 import api.utils.BaseAPITest;
 import api.utils.DataSetup;
-import api.utils.PropUtil;
 import api.utils.ResponseValidation;
-import api.utils.SchemaValidation;
 import io.restassured.response.Response;
 
 public class LoginUserTest extends BaseAPITest {
 
 	
-	@Test(priority=1, description="Login User")
+	@Test(priority=1, description="Login User", alwaysRun=true)
 	public void testLoginUser() throws IOException{
 	
 		String userName=DataSetup.loginUserDataSetup().get(0).toString();
@@ -29,7 +26,7 @@ public class LoginUserTest extends BaseAPITest {
 		ResponseValidation.validateStatusCode(loginUserResponse, 200);
 				
 		//VALIDATE RESPONSE JSON USING JSONPATH
-		ResponseValidation.validateJsonValue(loginUserResponse, "", "");
+		ResponseValidation.validateJsonValue(loginUserResponse, "code", 200);
 	}
 	
 	
